@@ -6,24 +6,27 @@ class EventCategoryItem extends StatelessWidget {
       required this.isActive,
       required this.text,
       required this.isFirst,
+      required this.onTap,
       required this.isLast});
 
   final bool isActive;
   final String text;
   final bool isLast;
   final bool isFirst;
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       margin: isLast
           ? const EdgeInsets.only(right: 16)
           : EdgeInsets.only(left: isFirst ? 16 : 8),
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 300),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: isActive ? const Color(0xFF214042) : Colors.transparent),
       child: InkWell(
-        onTap: () {},
+        borderRadius: BorderRadius.circular(16),
+        onTap: () => onTap(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Center(
